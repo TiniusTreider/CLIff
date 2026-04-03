@@ -1,19 +1,23 @@
 CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
-executable = ours
-objects = $(patsubst src/%.c,%.o,$(wildcard src/*))
+executable = cliff
+builddir = build
+objects = $(patsubst src/%.c,$(builddir)/%.o,$(wildcard src/*))
 
 .PHONY: all clean
 
 all: $(executable)
 
 clean:
-	rm -f $(executable) *.o
+	rm -f $(executable) build/*
 
 $(executable): $(objects)
 	$(CC) $(CFLAGS) $^ -o $@
 
-%.o: src/%.c
+$(builddir)/%.o: src/%.c | $(builddir)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(builddir):
+	mkdir -p $@
 
