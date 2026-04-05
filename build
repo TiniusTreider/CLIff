@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "$1" = "clean" ]; then
+	make clean
+	echo "cleaned successfully"
+else
+	bear -- make
+	echo "buildt successfully"
+fi
+

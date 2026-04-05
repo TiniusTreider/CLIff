@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Iinclude
 
 executable = cliff
-builddir = build
+builddir = .build
 objects = $(patsubst src/%.c,$(builddir)/%.o,$(wildcard src/*))
 
 .PHONY: all clean
@@ -10,7 +10,7 @@ objects = $(patsubst src/%.c,$(builddir)/%.o,$(wildcard src/*))
 all: $(executable)
 
 clean:
-	rm -f $(executable) build/*
+	rm -f $(executable) $(builddir)/* compile_commands.json
 
 $(executable): $(objects)
 	$(CC) $(CFLAGS) $^ -o $@
