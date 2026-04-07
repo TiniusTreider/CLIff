@@ -25,7 +25,7 @@ static inline void clean_error(void)
         if (error_msg == NULL)
                 return;
 
-        size_t len = strlen(error_msg);
+        size_t len = error_msg_size;
         write(STDERR_FILENO, error_msg, len);
         free(error_msg);
 }

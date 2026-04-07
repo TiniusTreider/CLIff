@@ -5,6 +5,7 @@
 void tick(void)
 {
         /* example tick function */
+
         static unsigned int pos_x = 5;
         static unsigned int pos_y = 5;
         static signed char vel_x = 1;
@@ -22,7 +23,7 @@ void tick(void)
         if (pos_y < 2)
                 vel_y *= -1;
 
-        int c = non_blocking();
+        const int c = non_blocking();
 
         static char out = ' ';
 
@@ -50,12 +51,12 @@ void tick(void)
                 .x = pos_x,
                 .y = pos_y
         };
-        struct color col = (struct color){
+        const struct color col = (struct color){
                 .fg = 0,
                 .bg = 1
         };
 
-        struct color no = (struct color){
+        const struct color no = (struct color){
                 .fg = 0,
                 .bg = 0
         };

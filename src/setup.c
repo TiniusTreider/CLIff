@@ -29,7 +29,6 @@ static inline void set_signal(void)
 	sa.sa_handler = handler;
 
 	sigaction(SIGINT, &sa, NULL);
-        sigaction(SIGSEGV, &sa, NULL);
         sigaction(SIGALRM, &sa, NULL);
         sigaction(SIGTERM, &sa, NULL);
 }

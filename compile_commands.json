@@ -45,6 +45,21 @@
     "output": ".build/error.o"
   },
   {
+    "file": "src/fps.c",
+    "arguments": [
+      "gcc",
+      "-Wall",
+      "-Wextra",
+      "-Iinclude",
+      "-c",
+      "src/fps.c",
+      "-o",
+      ".build/fps.o"
+    ],
+    "directory": "/home/tinius/cp/cliff",
+    "output": ".build/fps.o"
+  },
+  {
     "file": "src/input.c",
     "arguments": [
       "gcc",

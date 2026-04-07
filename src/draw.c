@@ -48,7 +48,7 @@ void put_string(char *s, size_t size, struct position pos, struct color col)
         set_color(col);
 
         ssize_t num = write(STDOUT_FILENO, s, size);
-        if (num != 1)
+        if (num != (ssize_t)size)
                 error("failed to write");
 }
 
