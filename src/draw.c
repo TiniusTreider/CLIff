@@ -1,41 +1,54 @@
+#include "control.h"
 #include "draw.h"
 
 #include <stddef.h>
 #include <stdio.h>
 #include <unistd.h>
 
-struct position {
-        unsigned int x;
-        unsigned int y;
-};
-struct color {
-        unsigned char foreground;
-        unsigned char background;
-};
-
 static inline void move_cursor(struct position pos)
 {
         char buffer[32];
         size_t amount = snprintf(buffer, 31, "\033[%d;%dH", pos.y, pos.x);
-        (void)write(STDOUT_FILENO, buffer, amount);
+
+        ssize_t num = write(STDOUT_FILENO, buffer, amount);
+        if (num == -1)
+                error("failed to write");
 }
 
-static inline void set_color(struct color)
+static inline void set_color(struct color col)
 {
-        (void)color;
+        char buffer[32];
+        size_t amount = snprintf(
+                buffer,
+                31,
+                "\033[38;5;%dm\033[48;5;%dm",
+                col.fg,
+                col.bg
+        );
+
+        ssize_t num = write(STDOUT_FILENO, buffer, amount);
+        if (num == -1)
+                error("failed to write");
+
 }
 
 void put_char(char c, struct position pos, struct color col)
 {
-        (void)c;
-        (void)pos;
-        (void)col;
+        move_cursor(pos);
+        set_color(col);
+
+        ssize_t num = write(STDOUT_FILENO, &c, 1);
+        if (num != 1)
+                error("failed to write");
 }
 
-void put_string(char *s, struct position pos, struct color col)
+void put_string(char *s, size_t size, struct position pos, struct color col)
 {
-        (void)s;
-        (void)pos;
-        (void)col;
+        move_cursor(pos);
+        set_color(col);
+
+        ssize_t num = write(STDOUT_FILENO, s, size);
+        if (num != 1)
+                error("failed to write");
 }
 
