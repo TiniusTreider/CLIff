@@ -1,3 +1,4 @@
+#include "cliff.h"
 #include "control.h"
 
 volatile sig_atomic_t should_stop = 0;

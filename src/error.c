@@ -14,10 +14,11 @@ void error(char *msg)
         }
 
         size_t len = strlen(msg);
-        error_msg = (char*)malloc(len);
+        error_msg = (char*)malloc(len + 1);
+        error_msg[len] = '\0';
         error_msg_size = len;
 
-        strcpy(error_msg, msg);
+        memcpy(error_msg, msg, len);
 
         should_stop = 1;
 }

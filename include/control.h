@@ -9,7 +9,6 @@ extern volatile sig_atomic_t should_stop;
 extern struct termios original;
 
 void setup(void);
-void tick(void);
 void clean(void);
 
 extern size_t error_msg_size;
