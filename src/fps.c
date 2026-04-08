@@ -1,3 +1,4 @@
+#include "control.h"
 #include "fps.h"
 
 #include <errno.h>
@@ -6,6 +7,9 @@
 
 void sleep_ns(uint64_t nanosecs)
 {
+        if (nanosecs == 0)
+                error("you can't set the fps to 0");
+
         struct timespec ts = {
                 .tv_sec = (time_t)(nanosecs / NS_IN_S),
                 .tv_nsec = (long)(nanosecs % NS_IN_S)
