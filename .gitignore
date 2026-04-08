@@ -1,3 +1,5 @@
 .build/*
 cliff
+compile_commands.json
+.gitignore
 
