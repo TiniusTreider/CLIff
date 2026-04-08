@@ -1,22 +1,25 @@
 #include "cliff.h"
-#include "input.h"
 #include "draw.h"
+#include "fps.h"
+#include "input.h"
 
 void tick(void)
 {
         /* example tick function */
 
+        keep_fps(6);
+
         static unsigned int pos_x = 5;
         static unsigned int pos_y = 5;
         static signed char vel_x = 1;
-        static signed char vel_y = 2;
+        static signed char vel_y = 1;
 
         pos_x += vel_x;
         pos_y += vel_y;
 
         if (pos_x >= 10)
                 vel_x *= -1;
-        if (pos_y >= 10)
+        if (pos_y >= 11)
                 vel_y *= -1;
         if (pos_x < 2)
                 vel_x *= -1;

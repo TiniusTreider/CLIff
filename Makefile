@@ -10,7 +10,7 @@ objects = $(patsubst src/%.c,$(builddir)/%.o,$(wildcard src/*))
 all: $(executable)
 
 clean:
-	rm -f $(executable) $(builddir)/* compile_commands.json
+	rm -f $(executable) $(builddir)/*
 
 $(executable): $(objects)
 	$(CC) $(CFLAGS) $^ -o $@
