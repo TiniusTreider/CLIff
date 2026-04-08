@@ -9,6 +9,9 @@
 void sleep_ns(uint64_t);
 void get_ns(uint64_t*);
 
+extern uint64_t curr_time = 0;
+extern uint64_t deltatime = 0;
+
 void keep_fps(size_t);
 
 #endif
